@@ -1,5 +1,7 @@
+const DAYS_IN_WEEK: u32 = 7;
+
 fn main() {
-  shadowing();
+  println!("Days in week: {DAYS_IN_WEEK}");
 }
 
 fn mutable_variables() {
