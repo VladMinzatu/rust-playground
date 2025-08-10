@@ -1,5 +1,5 @@
 fn main() {
-  tuples();
+  arrays();
 }
 
 fn ints() {
@@ -31,4 +31,13 @@ fn tuples() {
   let mut tup2: (i32, i32) = (5, 6);
   tup2.0 = 10;
   println!("tup2 is {tup2:?}");
+}
+
+fn arrays() {
+  let a: [i32; 3] = [1, 2, 3];
+  let b: [i32; 3] = [8; 3];
+  println!("a is {a:?}");
+  println!("b is {b:?}");
+  println!("a[0] is {}", a[0]);
+  println!("b[0] is {}", b[0]);
 }
