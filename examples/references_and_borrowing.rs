@@ -8,6 +8,8 @@ fn main() {
     println!("[main]first is {first} and second is {second}");
 
     pointers_and_dereferencing();
+
+    permissions();
 }
 
 fn sub(first: &String, second: &String) {
@@ -24,4 +26,14 @@ fn pointers_and_dereferencing() {
     let z: &Box<i32> = &x; // we can also borrow the box itself
     let w: i32 = **z; // dereference the box to get the value
     println!("z is {z} and w is {w}");
+}
+
+fn permissions() {
+    let mut v = vec![1, 2, 3];
+    let num: &mut i32 = &mut v[2];
+
+    *num += 1;
+    
+    println!("num is {}", *num);
+    println!("Vector is now {:?}", v);
 }
