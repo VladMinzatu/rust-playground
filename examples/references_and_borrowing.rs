@@ -37,3 +37,8 @@ fn permissions() {
     println!("num is {}", *num);
     println!("Vector is now {:?}", v);
 }
+
+fn return_ref_to_stack() -> String { // could not return &String here (reference to stack value)
+    let s = String::from("Hello world");
+    s // s is returned by value, so it is moved to the caller, i.e. ownership is mvoed outside of the function
+}
