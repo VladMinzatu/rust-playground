@@ -1,0 +1,13 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run current example",
+      "type": "shell",
+      "command": "cargo run --quiet --example ${fileBasenameNoExtension}",
+      "problemMatcher": ["$rustc"],
+      "group": { "kind": "build", "isDefault": true },
+      "presentation": { "clear": true, "focus": false, "panel": "shared" }
+    }
+  ]
+}
