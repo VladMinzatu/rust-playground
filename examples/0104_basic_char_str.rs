@@ -10,6 +10,8 @@ fn main() {
     print_lengths("🦀🦀");
 
     indexing_and_slicing("héllo");
+
+    char_methods();
 }
 
 fn to_upper_case(s: &str) -> String {
@@ -35,4 +37,30 @@ fn indexing_and_slicing(s: &str) {
     // get() returns None instead of panicking
     println!("s.get(0..2) = {:?}", s.get(0..2));
     println!("is_char_boundary(2) = {}", s.is_char_boundary(2));
+}
+
+fn char_methods() {
+    // classification
+    for c in ['a', 'Z', '7', ' ', 'é', '🦀'] {
+        println!(
+            "{:?}: alphabetic={} numeric={} alphanumeric={} whitespace={} ascii={}",
+            c, c.is_alphabetic(), c.is_numeric(), c.is_alphanumeric(), c.is_whitespace(), c.is_ascii()
+        );
+    }
+
+    // digits: to_digit takes a radix and returns an Option
+    println!("'7'.to_digit(10) = {:?}", '7'.to_digit(10));
+    println!("'f'.to_digit(16) = {:?}", 'f'.to_digit(16));
+    println!("'x'.to_digit(10) = {:?}", 'x'.to_digit(10));
+    println!("char::from_digit(9, 10) = {:?}", char::from_digit(9, 10));
+
+    // case: to_uppercase returns an iterator because one char can map to several
+    println!("'a'.to_uppercase() = {}", 'a'.to_uppercase());
+    println!("'ß'.to_uppercase() = {}", 'ß'.to_uppercase()); // "SS"
+    println!("'ß'.to_ascii_uppercase() = {}", 'ß'.to_ascii_uppercase()); // non-ASCII is left unchanged
+
+    // a char is a Unicode scalar value, convertible to and from u32
+    println!("'A' as u32 = {}", 'A' as u32);
+    println!("char::from_u32(0x1F980) = {:?}", char::from_u32(0x1F980));
+    println!("char::from_u32(0xD800) = {:?}", char::from_u32(0xD800)); // surrogates aren't valid chars
 }
