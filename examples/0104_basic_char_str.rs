@@ -12,6 +12,8 @@ fn main() {
     indexing_and_slicing("héllo");
 
     char_methods();
+
+    str_methods("  Hello, World  ");
 }
 
 fn to_upper_case(s: &str) -> String {
@@ -63,4 +65,36 @@ fn char_methods() {
     println!("'A' as u32 = {}", 'A' as u32);
     println!("char::from_u32(0x1F980) = {:?}", char::from_u32(0x1F980));
     println!("char::from_u32(0xD800) = {:?}", char::from_u32(0xD800)); // surrogates aren't valid chars
+}
+
+fn str_methods(s: &str) {
+    // trimming returns a sub-slice of the original, no allocation
+    println!("trim = {:?}", s.trim());
+    println!("trim_start = {:?}", s.trim_start());
+    let t = s.trim();
+
+    // searching
+    println!("contains(\"World\") = {}", t.contains("World"));
+    println!("starts_with('H') = {}", t.starts_with('H')); // patterns can be &str, char, or a closure
+    println!("find(',') = {:?}", t.find(',')); // byte index of the first match
+    println!("find(char::is_whitespace) = {:?}", t.find(char::is_whitespace));
+
+    // splitting returns iterators of &str
+    println!("split(\", \") = {:?}", t.split(", ").collect::<Vec<_>>());
+    println!("split_whitespace = {:?}", "a  b\tc\n".split_whitespace().collect::<Vec<_>>());
+    println!("split_once(',') = {:?}", t.split_once(','));
+    println!("lines = {:?}", "one\ntwo\r\nthree".lines().collect::<Vec<_>>());
+
+    // these allocate a new String
+    println!("replace = {:?}", t.replace("World", "Rust"));
+    println!("to_lowercase = {:?}", t.to_lowercase());
+    println!("repeat = {:?}", "ab".repeat(3));
+
+    // stripping a prefix/suffix returns Option
+    println!("strip_prefix(\"Hello\") = {:?}", t.strip_prefix("Hello"));
+    println!("strip_prefix(\"Bye\") = {:?}", t.strip_prefix("Bye"));
+
+    // parsing into other types returns Result
+    println!("\"42\".parse::<i32>() = {:?}", "42".parse::<i32>());
+    println!("\"4x2\".parse::<i32>() = {:?}", "4x2".parse::<i32>());
 }
