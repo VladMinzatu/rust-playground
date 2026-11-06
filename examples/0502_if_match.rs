@@ -18,4 +18,18 @@ fn main() {
         2 => println!("x was greater than 10"),
         _ => println!("unexpected value"),
     }
+
+    if let Some(value) = process_y(y) {
+        println!("y is Some({})", value);
+    } else {
+        println!("y is None");
+    }
 }
+
+fn process_y(y: i32) -> Option<i32> {
+    if y < 10 {
+        Some(y)
+    } else {
+        None
+    }
+} 
