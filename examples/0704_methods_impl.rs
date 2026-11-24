@@ -20,6 +20,9 @@ impl Queue {
     }
 }
 
+fn just_hanging_around() { // this is a "free function", btw 
+    println!("Just hanging around");
+}
 fn main() {
     let mut queue = Queue::new();
     queue.push(1);
@@ -27,4 +30,6 @@ fn main() {
     queue.push(3);
     println!("Popped: {:?}", queue.pop());
     println!("Popped: {:?}", queue.pop());
+
+    just_hanging_around();
 }
