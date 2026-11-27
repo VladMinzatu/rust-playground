@@ -4,6 +4,16 @@ enum HttpStatus {
     InternalServerError = 500
 }
 
+impl HttpStatus {
+    fn message(&self) -> &str {
+        match self {
+            HttpStatus::Ok => "OK",
+            HttpStatus::NotFound => "Not Found",
+            HttpStatus::InternalServerError => "Internal Server Error",
+        }
+    }
+}
+
 fn main() {
     let status = HttpStatus::Ok;
     match status {
@@ -14,4 +24,6 @@ fn main() {
 
     assert_eq!(size_of::<HttpStatus>(), 2); // smallest integer type that can hold the values
     assert_eq!(HttpStatus::Ok as i32, 200); // can cast enums to integers
+
+    println!("Status OK message: {}", status.message());
 }
